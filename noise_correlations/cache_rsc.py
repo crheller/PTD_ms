@@ -14,9 +14,9 @@ import ptd_utils as pu
 sites = ['TAR010c', 'BRT026c', 'BRT033b', 'BRT034f', 'BRT036b', 'BRT037b',
     'BRT039c', 'bbl102d', 'AMT018a', 'AMT020a', 'AMT022c', 'AMT026a']
 
-path = '/auto/users/hellerc/code/projects/Cosyne2020_poster/noise_correlations/results/'
+path = '/auto/users/hellerc/results/ptd_ms/noise_correlations/'
 
-# define start and end window of noise correlation calculation. MAsking prestim, so start at 0
+# define start and end window of noise correlation calculation. Masking prestim, so start at 0
 ts = 0   # sec
 te = 0.2
 filename = 'tar_rsc_{0}_{1}'.format(str(ts).replace('.', ','), str(te).replace('.', ','))
