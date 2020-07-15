@@ -115,7 +115,7 @@ for ts, te in count_windows:
             df = pd.concat([adf, pdf, pbdf, psdf], axis=1) 
         else:
             psdf = pbdf.copy()
-            psdf = psdf.rename(columns={'rsc': 'ps', 'pval': 'ps_p'}) 
+            psdf = psdf.rename(columns={'pb': 'ps', 'pb_p': 'ps_p'}) 
             psdf['ps'] = np.nan
             psdf['ps_p'] = np.nan
 
