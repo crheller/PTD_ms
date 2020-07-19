@@ -294,3 +294,6 @@ if not os.path.isdir(os.path.join(path, site)):
 for state, results in zip(['active', 'passive', 'passiveBP'], [active_results, passive_results, passiveBP_results]):
     mn = modelname + '_{}'.format(state)
     results.save_pickle(os.path.join(path, site, mn+'.pickle'))
+
+if queueid:
+    nd.update_job_complete(queueid)
