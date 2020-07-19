@@ -160,7 +160,7 @@ all_data, act_data, pass_data, pb_data = decoding.get_est_val_sets(resp_dict,
                                                                        a_mask,
                                                                        p_mask,
                                                                        pb_mask
-                                                                   ], tolerance=50, min_reps=10)
+                                                                   ], tolerance=100, min_reps=10)
 # NOTE - If computing decoding axis across all states, will still need to make sure to balance
 # across state. e.g. if there are more active reps, this would make the decoding axis biased to 
 # active. This will get handled below, when defining "decoding_data"
