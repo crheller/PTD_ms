@@ -11,6 +11,7 @@ Procedure:
 import pickle
 import numpy as np
 from itertools import combinations
+import os
 
 import charlieTools.ptd_ms.utils as utils
 import charlieTools.preprocessing as preproc
@@ -281,3 +282,12 @@ log.info("Compressing results into DecodingResults object... ")
 active_results = decoding.DecodingResults(active_results) 
 passive_results = decoding.DecodingResults(passive_results) 
 passiveBP_results = decoding.DecodingResults(passiveBP_results) 
+
+# Save results
+log.info("Saving results to {}".format(path))
+if not os.path.isdir(os.path.join(path, site)):
+    os.mkdir(os.path.join(path, site))
+
+for state, results in zip(['active', 'passive', 'passiveBP'], [active_results, passive_results, passiveBP_results]):
+    mn = modelname + '_{}'.format(state)
+    results.save_pickle(os.path.join(path, site, mn+'.pickle'))
