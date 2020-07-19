@@ -12,6 +12,9 @@ import pickle
 import numpy as np
 from itertools import combinations
 import os
+import sys
+import pandas as pd
+import copy
 
 import charlieTools.ptd_ms.utils as utils
 import charlieTools.preprocessing as preproc
@@ -157,20 +160,20 @@ all_data, act_data, pass_data, pb_data = decoding.get_est_val_sets(resp_dict,
                                                                        a_mask,
                                                                        p_mask,
                                                                        pb_mask
-                                                                   ], tolerance=50, min_reps=10)
+                                                                   ], tolerance=80, min_reps=10)
 # NOTE - If computing decoding axis across all states, will still need to make sure to balance
 # across state. e.g. if there are more active reps, this would make the decoding axis biased to 
 # active. This will get handled below, when defining "decoding_data"
 
 # ============================ Define decoding axis data =============================
 if dc_axis == 'all':
-    decoding_data = all_data.copy()
+    decoding_data = copy.deepcopy(all_data)
 elif dc_axis == 'pass':
-    decoding_data = pass_data.copy()
+    decoding_data = copy.deepcopy(pass_data)
 elif dc_axis == 'act':
-    decoding_data = act_data.copy()
+    decoding_data = copy.deepcopy(act_data)
 elif dc_axis == 'passBP':
-    decoding_data = pb_data.copy()
+    decoding_data = copy.deepcopy(pb_data)
 elif dc_axis not in ['all', 'pass', 'act', 'passBP']:
     raise ValueError("Unknown option for decoding axis specification. Should be one of " \
                             "['all', 'pass', 'act', 'passBP']")
