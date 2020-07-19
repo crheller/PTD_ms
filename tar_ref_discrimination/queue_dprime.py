@@ -31,6 +31,11 @@ time_windows = [
 ]
 modellist = np.concatenate([[m+'_decAxisWin-{},{}'.format(t1, t2) for (t1, t2) in time_windows] for m in modellist])
 
+if TDR:
+    modellist = [m+"_TDR" for m in modellist]
+if use_target_noise:
+    modellist = [m+"_tarNoise" for m in modellist]
+
 script = '/auto/users/hellerc/code/projects/ptd_ms/tar_ref_discrimination/cache_dprime.py'
 python_path = '/auto/users/hellerc/anaconda3/envs/lbhb/bin/python'
 
