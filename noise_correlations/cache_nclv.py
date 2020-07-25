@@ -9,6 +9,7 @@ import charlieTools.ptd_ms.decoding as decoding
 import nems.db as nd
 import nems
 
+import os
 import numpy as np
 import pickle
 import logging
@@ -145,3 +146,6 @@ with open(fn, 'wb') as handle:
     pickle.dump(lv_results, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 log.info("Saved results to {}".format(fn))
+
+if queueid:
+    nd.update_job_complete(queueid)
