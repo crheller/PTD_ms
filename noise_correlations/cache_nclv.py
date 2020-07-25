@@ -10,6 +10,7 @@ import nems.db as nd
 import nems
 
 import os
+import sys
 import numpy as np
 import pickle
 import logging
