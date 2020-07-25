@@ -55,7 +55,7 @@ rec = rec.and_mask(['PreStimSilence', 'PostStimSilence'], invert=True)
 # ================================ Perform analysis on the raw data =======================================
 tar_epochs = [e for e in rec.epochs.name.unique() if 'TAR_' in e]
 active_dict = rec['resp'].extract_epochs(tar_epochs, mask=rec['a_mask'], allow_incomplete=True)
-passive_dict = rec['resp'].extract_epochs(tar_epochs, mask=rec['p_mask'], allow_incomplete=True)
+passive_dict = rec['resp'].extract_epochs(tar_epochs, mask=rec['pb_mask'], allow_incomplete=True)
 
 log.info("Collapse responses over the relevant time window")
 active_dict = decoding.squeeze_time_dim(active_dict, fs=rec['resp'].fs, twin=tWin, keepdims=True)
@@ -106,11 +106,11 @@ niters = 20
 all_matrix = np.concatenate((a_matrix, p_matrix), axis=-1)
 nreps_active = a_matrix.shape[-1]
 nreps_passive = p_matrix.shape[-1]
-inidces = np.arange(0, all_matrix.shape[-1])
+indices = np.arange(0, all_matrix.shape[-1])
 for k in range(niters):
     # random draw a/p
-    pinds = np.random.choice(inidces, nreps_passive, replace=False).tolist()
-    ainds = list(set(idx) - set(pinds))
+    pinds = np.random.choice(indices, nreps_passive, replace=False).tolist()
+    ainds = list(set(indices) - set(pinds))
     rd_passive = all_matrix[:, pinds]
     rd_active = all_matrix[:, ainds]
 
