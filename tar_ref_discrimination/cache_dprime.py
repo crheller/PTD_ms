@@ -100,12 +100,12 @@ for op in options:
 
 # ================ load LV information for this site =======================
 if nc_lv:
-    nc_lv_path = '/auto/users/hellerc/results/ptd_ms/LV/nc_zscore_lvs.pickle'
+    nc_lv_path = '/auto/users/hellerc/results/ptd_ms/latent_variables/{0}_nclv-{1},{2}.pickle'.format(site, dc_axisWin[0], dc_axisWin[1])
     log.info("loading LV information from {}".format(nc_lv_path))
     with open(fn, 'rb') as handle:
         lv_results = pickle.load(handle)
-    beta1 = lv_results[site]['beta1']
-    beta2 = lv_results[site]['beta2']
+    beta1 = lv_results['beta1']
+    beta2 = lv_results['beta2']
 else:
     beta1 = None
     beta2 = None
